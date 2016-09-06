@@ -11,12 +11,19 @@
 
             initEvents: function initEvents() {
               $('[data-js="form-register"]').on('submit', this.handleSubmit);
+              $('[data-js="removeBtn"]').on('click', this.handleClick);
             },
 
             handleSubmit: function handleSubmit(e) {
                 e.preventDefault();
                 var $tableCar = $('[data-js="table-car"]').get();
                 $tableCar.appendChild(app.createNewCar());
+            },
+
+            handleClick: function handleClick(e) {
+                e.preventDefault();
+                var $tableCar = $('[data-js="table-car"]').get();
+                $tableCar.removeChild($tableCar.lastChild);
             },
 
             createNewCar: function createNewCar() {
@@ -37,7 +44,7 @@
                 $tdYear.textContent = $('[data-js="year"]').get().value;
                 $tdPlate.textContent = $('[data-js="plate"]').get().value;
                 $tdColor.textContent = $('[data-js="color"]').get().value;
-                
+
                 $tr.appendChild($image);
                 $tr.appendChild($tdBrand);
                 $tr.appendChild($tdYear);
@@ -69,8 +76,8 @@
                 return this.readyState === 4 && this.status === 200;
             }
         };
-    })();
 
+    })();
     app.init();
 
 })(window.DOM);
